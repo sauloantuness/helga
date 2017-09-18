@@ -26,9 +26,9 @@ class Meddent():
         select = soup.find(attrs={'name': name})
 
         if select.find('option', attrs={'selected': 'selected'}):
-            return select.find('option', attrs={'selected': 'selected'}).text.strip()
+            return select.find('option', attrs={'selected': 'selected'}).get('value')
 
-        return select.find('option').text.strip()
+        return select.find('option').get('value')
 
     def get_radio_value(self, soup, name):
         return soup.find(attrs={'name': name, 'checked': 'checked'}).get('value')
@@ -54,7 +54,7 @@ class Meddent():
             'mes': self.get_input_value(soup, 'mes'),
             'ano': self.get_input_value(soup, 'ano'),
             
-            'id_cartao': self.get_select_value(soup, 'id_cartao'),
+            'convenio': self.get_select_value(soup, 'id_cartao'),
             
             'profissao': self.get_input_value(soup, 'profissao'),
             
@@ -71,7 +71,7 @@ class Meddent():
             'residencial': self.get_input_value(soup, 'residencial'),
             
             'celular': self.get_input_value(soup, 'celular'),
-            'radio': self.get_input_value(soup, 'radio'),
+            'celular2': self.get_input_value(soup, 'radio'),
             
             'email': self.get_input_value(soup, 'email'),
             
@@ -81,10 +81,10 @@ class Meddent():
             'id_cidade': self.get_select_value(soup, 'id_cidade'),
             'id_bairro': self.get_select_value(soup, 'id_bairro'),
             
-            'estado': self.get_select_value(soup, 'estado'),
+            'id_estado': self.get_select_value(soup, 'estado'),
             'cep': self.get_input_value(soup, 'cep'),
             
-            'conheceu': self.get_select_value(soup, 'conheceu'),
+            'id_marketing': self.get_select_value(soup, 'conheceu'),
             'id_dentista': self.get_select_value(soup, 'id_dentista'),
             
             'obs': self.get_textarea_value(soup, 'obs'),

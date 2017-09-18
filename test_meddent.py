@@ -25,12 +25,12 @@ class TestMeddent(unittest.TestCase):
         self.assertEqual(cliente['mes'], '00')
         self.assertEqual(cliente['ano'], '0000')
         
-        self.assertEqual(cliente['id_cartao'], 'Convênio')
+        self.assertEqual(cliente['convenio'], '0')
 
         self.assertEqual(cliente['profissao'], 'profissao')
 
         self.assertEqual(cliente['cpf'], '111.111.111-11')
-        self.assertEqual(cliente['estadocivil'], 'Escolha o estado civil')
+        self.assertEqual(cliente['estadocivil'], '0')
         
         self.assertEqual(cliente['nacionalidade'], 'nacionalidade')
         self.assertEqual(cliente['naturalidade'], 'Naturalidade')
@@ -42,21 +42,21 @@ class TestMeddent(unittest.TestCase):
         self.assertEqual(cliente['residencial'], '(11) 1111-1111')
         
         self.assertEqual(cliente['celular'], '(37) 9999-9999')
-        self.assertEqual(cliente['radio'], '(99) 9999-9999')
+        self.assertEqual(cliente['celular2'], '(99) 9999-9999')
         
         self.assertEqual(cliente['email'], 'email@email.com')
 
         self.assertEqual(cliente['endereco'], 'Endereco')
         self.assertEqual(cliente['complemento'], 'complemento')
         
-        self.assertEqual(cliente['id_cidade'], 'São João De Meriti')
-        self.assertEqual(cliente['id_bairro'], 'Centro')
+        self.assertEqual(cliente['id_cidade'], '1')
+        self.assertEqual(cliente['id_bairro'], '1')
 
-        self.assertEqual(cliente['estado'], 'Rio de Janeiro')
+        self.assertEqual(cliente['id_estado'], 'RJ')
         self.assertEqual(cliente['cep'], '30.000-000')
 
-        self.assertEqual(cliente['conheceu'], 'Como Conheceu a Clínica')
-        self.assertEqual(cliente['id_dentista'], 'Quem Indicou')
+        self.assertEqual(cliente['id_marketing'], '0')
+        self.assertEqual(cliente['id_dentista'], '0')
 
         self.assertEqual(cliente['obs'], 'obs')
 
