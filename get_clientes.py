@@ -1,5 +1,3 @@
-#coding: utf-8
-
 import os
 import pickle
 from meddent.meddent import *
@@ -31,7 +29,7 @@ def get_clientes():
 			print(cliente['id_cliente'])
 			save_obj(cliente, 'clientes', cliente['id_cliente'])
 		else:
-			print(str(ID_CLIENTE) + u' inválido')
+			print(str(ID_CLIENTE) + ' invalido')
 
 		ID_CLIENTE -= 1
 

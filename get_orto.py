@@ -1,5 +1,3 @@
-#coding: utf-8
-
 import os
 import pickle
 from meddent.meddent import *
@@ -37,7 +35,7 @@ def get_contratos():
 				save_obj(mensalidade, 'mensalidades', mensalidade['id_contrato'])
 
 		else:
-			print(str(ID_CONTRATO) + u' inválido')
+			print(str(ID_CONTRATO) + u' invalido')
 
 		ID_CONTRATO -= 1
 
