@@ -21,13 +21,9 @@ class Meddent():
 
     def get_pagina(self, url):
         r = self.session.get(url)
-
-
-
         soup = BeautifulSoup(r.text, 'html.parser')
 
         return soup
-
 
     def get_input_value(self, soup, name):
         return soup.find(attrs={'name': name}).get('value')
@@ -120,7 +116,7 @@ class Cliente(Meddent):
 
     def get_pagina_tratamento(self, url=None):
         if not url:
-            url = self.TRATAMENTO_URL + str(id_cliente)
+            url = self.TRATAMENTO_URL + str(self.id_cliente)
 
         r = self.session.get(url)
         soup = BeautifulSoup(r.text, 'html.parser')
@@ -185,7 +181,7 @@ class Pagamento():
             'valor': tr.find_all('td')[4].text.strip(),
         }
 
-    def get_pagamentos(self, soup):
+    def get_pagamentos(self):
         if len(self.soup.find_all('table')) != 16:
             return []
 
@@ -195,6 +191,7 @@ class Pagamento():
 
                 
         return list(map(self.get_pagamento, trs))
+
 
 class ContratoOrto(Meddent):
     def __init__(self, id_contrato):

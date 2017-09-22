@@ -1,4 +1,4 @@
-import os
+import os, sys
 import pickle
 from meddent.meddent import *
 from pprint import pprint
@@ -16,6 +16,7 @@ def days_hours_minutes(td):
     return td.days, td.seconds//3600, (td.seconds//60)%60
 
 def get_contratos():
+	sys.setrecursionlimit(10000)
 	ID_CONTRATO = 1353
 	c = ContratoOrto(ID_CONTRATO)
 
@@ -26,16 +27,15 @@ def get_contratos():
 		contrato = c.get_info()
 
 		if contrato:
-			import pdb; pdb.set_trace()
-			print(contrato['id_contrato'])
+			print(contrato['id_contrato'] + ' contrato')
 			save_obj(contrato, 'contratos', contrato['id_contrato'])
 
-			for mensalidade in contrato.get_mensalidades():
-				print('\t' + mensalidade['id_mensalidade'])
-				save_obj(mensalidade, 'mensalidades', mensalidade['id_contrato'])
+			for mensalidade in c.get_mensalidades():
+				print('\t' + mensalidade['id_mensalidade'] + ' mensalidade')
+				save_obj(mensalidade, 'mensalidades', mensalidade['id_mensalidade'])
 
 		else:
-			print(str(ID_CONTRATO) + u' invalido')
+			print(str(ID_CONTRATO) + ' invalido')
 
 		ID_CONTRATO -= 1
 
