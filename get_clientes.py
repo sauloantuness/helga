@@ -29,7 +29,7 @@ def get_clientes():
 			print(cliente['id_cliente'])
 			save_obj(cliente, 'clientes', cliente['id_cliente'])
 		else:
-			print(str(ID_CLIENTE) + ' inválido')
+			print(str(ID_CLIENTE) + u' inválido')
 
 		ID_CLIENTE -= 1
 

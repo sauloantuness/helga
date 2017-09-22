@@ -11,8 +11,8 @@ class Meddent():
     def login(self):
         self.session = requests.Session()
         data = {
-            'nome': '',
-            'senha': ''
+            'nome': 'helga',
+            'senha': '123456'
         }
 
         url = 'http://meddent.com.br/admin/index.php'
@@ -21,6 +21,9 @@ class Meddent():
 
     def get_pagina(self, url):
         r = self.session.get(url)
+
+
+
         soup = BeautifulSoup(r.text, 'html.parser')
 
         return soup
@@ -197,12 +200,19 @@ class ContratoOrto(Meddent):
     def __init__(self, id_contrato):
         Meddent.__init__(self)
         self.id_contrato = id_contrato
-        self.ORTO_CLIENTE_URL = 'http://meddent.com.br/admin/index.php?class=ClientesOrtoList&method=onView&key=' + str(id_contrato)
-        self.soup = self.get_pagina(self.ORTO_CLIENTE_URL)
+        self.ORTO_CLIENTE_URL = 'http://meddent.com.br/admin/index.php?class=ClientesOrtoList&method=onView&key='
+        self.soup = self.get_pagina(self.ORTO_CLIENTE_URL + str(id_contrato))
+
+    def set_id_contrato(self, id_contrato):
+        self.id_contrato = id_contrato
+        self.soup = self.get_pagina(self.ORTO_CLIENTE_URL + str(id_contrato))
 
 
     def get_info(self):
         div = self.soup.find(class_='cellCliente')
+
+        if not div.find_all('tr')[0].find_all('td')[0].find_all('p')[0].find('b').text.strip():
+            return None
         
         return {
             'id_contrato': div.find_all('tr')[0].find_all('td')[0].find_all('p')[0].find('b').text.strip(),
