@@ -17,7 +17,7 @@ def days_hours_minutes(td):
 
 def get_contratos():
 	# sys.setrecursionlimit(10000)
-	ID_CLIENTE = 11862
+	ID_CLIENTE = 11855
 	link_pagina_tratamento = None
 	cliente = Cliente(ID_CLIENTE)
 
@@ -26,6 +26,7 @@ def get_contratos():
 
 		cliente.set_id_cliente(ID_CLIENTE)
 		soup = cliente.get_pagina_tratamento(link_pagina_tratamento)
+		link_pagina_tratamento = None
 
 		tratamento = Tratamento(soup)
 		procedimentos = tratamento.get_procedimentos()
