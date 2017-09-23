@@ -163,6 +163,7 @@ class Tratamento():
             return []
 
         procedimentos = self.soup.find(id='idOrcamento').find_all('tr')[3:-1]
+        procedimentos = filter(lambda tr: len(tr.find_all('td')) == 8, procedimentos)
 
 
         return list(map(self.get_procedimento, procedimentos))
