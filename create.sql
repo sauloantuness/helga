@@ -85,7 +85,7 @@ create table tb_cliente (
 	id_bairro int foreign key references tb_bairro(id_bairro),
 
 	id_estado varchar(2) foreign key references tb_estado(id_estado),
-	cep varchar(10),
+	cep varchar(12),
 
 	id_marketing varchar(255) foreign key references tb_marketing(id_marketing),
 	id_indicacao int foreign key references tb_indicacao(id_indicacao),

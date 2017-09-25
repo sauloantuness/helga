@@ -267,7 +267,6 @@ def clean_cliente(cliente):
     cliente['responsavel_cpf'] = clean_cpf(cliente['responsavel_cpf'])
     cliente['responsavel_endereco'] = clean_str(cliente['responsavel_endereco'])
 
-    print(cliente['nascimento'])
     return cliente
 
 def insert_cliente(cliente):
