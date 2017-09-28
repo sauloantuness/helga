@@ -33,7 +33,9 @@ def get_contratos():
 
 		if procedimentos:
 			tratamento = {
+				'id_cliente': procedimentos[0]['id_cliente'],
 				'id_tratamento': procedimentos[0]['id_tratamento'],
+				'dentista': soup.find(id='idOrcamento').find_all('tr')[2].text.split('-')[1].strip(),
 				'procedimentos': procedimentos,
 			}
 

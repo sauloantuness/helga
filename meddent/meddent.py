@@ -147,7 +147,9 @@ class Tratamento():
         self.soup = soup
 
     def get_procedimento(self, soup_tr):
+        import pdb; pdb.set_trace()
         return {
+            'id_procedimento': soup_tr.find_all('td')[0].find('a').get('href').split('key=')[1],
             'id_tratamento': self.soup.find(attrs={'name':'id_tratamento'}).get('value'),
             'id_cliente': self.soup.find(attrs={'name':'id_cliente'}).get('value'),
             'data': soup_tr.find_all('td')[1].text.strip(),
