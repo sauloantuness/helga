@@ -1,5 +1,3 @@
-# -*- coding: cp1252 -*-
-
 import os
 import pickle
 import pyodbc
@@ -8,7 +6,7 @@ from datetime import datetime
 from utils import *
 
 server = '192.168.15.58'
-server = 'r13.ddns.me'
+#server = 'r13.ddns.me'
 port = '49841' 
 database = 'meddent'
 username = 'sa'
@@ -90,7 +88,6 @@ def clean_mensalidade(mensalidade):
 
 def insert_mensalidade(mensalidade):
     mensalidade = clean_mensalidade(mensalidade)
-
     sql = """
         insert into tb_mensalidade(
             id_mensalidade,
@@ -137,17 +134,14 @@ def insert_tratamento(tratamento):
             id_dentista
     ) values (?, ?, ?) """
 
+
     cursor.execute(sql, 
         tratamento['id_tratamento'],
         tratamento['id_cliente'],
         tratamento['id_dentista'],
     )
 
-    cursor.commit()
-
-
-    for procedimento in tratamento.procedimentos:
-        procedimento = clean_procedimento(procedimento):
+    for procedimento in tratamento['procedimentos']:
         insert_procedimento(procedimento)
 
 
@@ -156,9 +150,9 @@ def clean_procedimento(procedimento):
     procedimento['data'] = clean_date(procedimento['data'])
     procedimento['procedimento'] = clean_str(procedimento['procedimento'])
     procedimento['especialidade'] = clean_str(procedimento['especialidade'])
-    procedimento['valor'] = clean_float(procedimento['valor'])
+    procedimento['valor'] = clean_valor(procedimento['valor'])
     procedimento['quantidade'] = clean_int(procedimento['quantidade'])
-    procedimento['total'] = clean_float(procedimento['total'])
+    procedimento['total'] = clean_valor(procedimento['total'])
     procedimento['id_tratamento'] = clean_int(procedimento['id_tratamento'])
 
     return procedimento
@@ -169,24 +163,24 @@ def insert_procedimento(procedimento):
     sql = """
         insert into tb_procedimento(
             id_procedimento,
+            id_tratamento,
             data,
             procedimento,
             especialidade,
             valor,
             quantidade,
-            total,
-            id_tratamento
+            total
     ) values (?, ?, ?, ?, ?, ?, ?, ?) """
 
     cursor.execute(sql, 
         procedimento['id_procedimento'],
+        procedimento['id_tratamento'],
         procedimento['data'],
         procedimento['procedimento'],
         procedimento['especialidade'],
         procedimento['valor'],
         procedimento['quantidade'],
         procedimento['total'],
-        procedimento['id_tratamento']
     )
 
     cursor.commit()
@@ -198,7 +192,7 @@ def clean_pagamento(pagamento):
     pagamento['data'] = clean_date(pagamento['data'])
 
     pagamento['tipo'] = clean_str(pagamento['tipo'])
-    pagamento['valor'] = clean_float(pagamento['valor'])
+    pagamento['valor'] = clean_valor(pagamento['valor'])
 
     return pagamento
 
@@ -347,7 +341,9 @@ def insert_cliente(cliente):
     cursor.commit()
 
 if __name__ == '__main__':
-    for folder in folders:
-        for obj in os.listdir('data/mensalidades/'):
-            mensalidade = load_obj('mensalidades', obj)
-            command = insert_mensalidade(mensalidade)
+     # t = load_obj('tratamentos', '17769.pkl')
+     # pprint(t)
+     # exit()
+     for obj in sorted(os.listdir('data/pagamentos/')):
+        item = load_obj('pagamentos', obj)
+        command = insert_pagamento(item)
