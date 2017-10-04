@@ -26,14 +26,19 @@ def clean_float(value):
 def clean_valor(value):
     if value:
         value = value.split(' ')[1]
+        value = value.replace('.', '')
         value = value.replace(',', '.')
+        value = float(value)
         return value
     else:
         return None
 
 def clean_date(value):
     if value:
-        d, m, y = [v for v in value.split('/')]
+        if '-' in value:
+            y, m, d = [v for v in value.split('-')]
+        else:
+            d, m, y = [v for v in value.split('/')]
 
         return '-'.join([y, m, d])
     else:

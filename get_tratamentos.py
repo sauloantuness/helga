@@ -17,7 +17,7 @@ def days_hours_minutes(td):
 
 def get_contratos():
 	# sys.setrecursionlimit(10000)
-	ID_CLIENTE = 11855
+	ID_CLIENTE = 11862
 	link_pagina_tratamento = None
 	cliente = Cliente(ID_CLIENTE)
 
@@ -80,5 +80,5 @@ if __name__ == '__main__':
 	    os.makedirs('./data/tratamentos')
 
 	get_contratos()
-	# pprint(load_obj('tratamentos', '13852'))
-	# pprint(load_obj('pagamentos', '35163'))
+#	pprint(load_obj('tratamentos', '15236'))
+#	pprint(load_obj('pagamentos', '35163'))
