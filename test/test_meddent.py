@@ -262,6 +262,21 @@ class TestMeddent(unittest.TestCase):
 
         self.assertEqual(c.get_mensalidades(), mensalidades)
 
+    def test_deve_retornar_ultimo_id_cliente(self):
+        m = Meddent()
+        r = m.session.get('http://meddent.com.br/admin/index.php')
+        id_cliente = m.get_ultimo_id_cliente()
+        m.session.close()
+
+        self.assertEqual(11945, id_cliente)
+
+    def test_deve_retornar_ultimo_id_contrato(self):
+        m = Meddent()
+        r = m.session.get('http://meddent.com.br/admin/index.php')
+        id_contrato = m.get_ultimo_id_contrato()
+        m.session.close()
+
+        self.assertEqual(1359, id_contrato)
 
 if __name__ == '__main__':
     unittest.main()

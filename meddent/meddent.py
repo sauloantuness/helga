@@ -42,6 +42,23 @@ class Meddent():
     def get_textarea_value(self, soup, name):
         return soup.find(attrs={'name': name}).text.strip()
 
+    def get_ultimo_id_cliente(self):
+        soup = self.get_pagina(self.BASE_URL + '/admin/index.php?class=ClientesList')
+        id_cliente = soup\
+                .find('a', {'href': lambda x: x.startswith('?class=ClientesList&method=onEdit&key=')})\
+                .get('href')\
+                .split('key=')[1]
+
+        return int(id_cliente)
+
+    def get_ultimo_id_contrato(self):
+        soup = self.get_pagina(self.BASE_URL + '/admin/index.php?class=ClientesOrtoList')
+        id_contrato = soup\
+                .find('a', {'href': lambda x: x.startswith('?class=ClientesOrtoList&method=onEdit&key=')})\
+                .get('href')\
+                .split('key=')[1]
+
+        return int(id_contrato)
 
 class Cliente(Meddent):
     def __init__(self, id_cliente):
@@ -113,6 +130,7 @@ class Cliente(Meddent):
         }
 
         return cliente
+
 
     def get_pagina_tratamento(self, url=None):
         if not url:
