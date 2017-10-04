@@ -1,6 +1,7 @@
 import os, sys
 import pickle
 from meddent.meddent import *
+from meddent.config import *
 from pprint import pprint
 from datetime import datetime
 
@@ -17,7 +18,7 @@ def days_hours_minutes(td):
 
 def get_contratos():
 	# sys.setrecursionlimit(10000)
-	ID_CLIENTE = 11862
+	ID_CLIENTE = CONFIG['ID_CLIENTE']
 	link_pagina_tratamento = None
 	cliente = Cliente(ID_CLIENTE)
 

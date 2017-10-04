@@ -1,23 +1,24 @@
 import requests
 from bs4 import BeautifulSoup
-
+from .config import *
 
 class Meddent():
     def __init__(self):
-        self.CLIENTE_URL = 'http://meddent.com.br/admin/index.php?class=ClientesList&method=onEdit&key='
-        self.BASE_URL = 'http://meddent.com.br'
+        self.BASE_URL = CONFIG['BASE_URL']
+        self.LOGIN_URL = self.BASE_URL + '/admin/index.php'
+        self.CLIENTE_URL = self.BASE_URL + '/admin/index.php?class=ClientesList&method=onEdit&key='
+        self.TRATAMENTO_URL = self.BASE_URL + '/admin/index.php?class=TratamentosClientesList&method=onView&key='
+        self.ORTO_CLIENTE_URL = self.BASE_URL + '/admin/index.php?class=ClientesOrtoList&method=onView&key='
         self.login()
 
     def login(self):
         self.session = requests.Session()
         data = {
-            'nome': 'helga',
-            'senha': '123456'
+            'nome': CONFIG['NOME'],
+            'senha': CONFIG['SENHA'],
         }
 
-        url = 'http://meddent.com.br/admin/index.php'
-
-        self.session.post(url=url, data=data)
+        self.session.post(url=self.LOGIN_URL, data=data)
 
     def get_pagina(self, url):
         r = self.session.get(url)
@@ -64,7 +65,6 @@ class Cliente(Meddent):
     def __init__(self, id_cliente):
         Meddent.__init__(self)
         self.id_cliente = id_cliente
-        self.TRATAMENTO_URL = 'http://meddent.com.br/admin/index.php?class=TratamentosClientesList&method=onView&key='
 
     def set_id_cliente(self, id_cliente):
         self.id_cliente = id_cliente
@@ -209,7 +209,6 @@ class Pagamento():
 
         trs = filter(lambda tr: len(tr.find_all('td')) == 5, trs)
 
-                
         return list(map(self.get_pagamento, trs))
 
 
@@ -217,7 +216,6 @@ class ContratoOrto(Meddent):
     def __init__(self, id_contrato):
         Meddent.__init__(self)
         self.id_contrato = id_contrato
-        self.ORTO_CLIENTE_URL = 'http://meddent.com.br/admin/index.php?class=ClientesOrtoList&method=onView&key='
         self.soup = self.get_pagina(self.ORTO_CLIENTE_URL + str(id_contrato))
 
     def set_id_contrato(self, id_contrato):

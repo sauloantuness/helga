@@ -1,6 +1,7 @@
 import os, sys
 import pickle
 from meddent.meddent import *
+from meddent.config import *
 from pprint import pprint
 from datetime import datetime
 
@@ -17,7 +18,7 @@ def days_hours_minutes(td):
 
 def get_contratos():
 	sys.setrecursionlimit(10000)
-	ID_CONTRATO = 1353
+	ID_CONTRATO = CONFIG['ID_CONTRATO']
 	c = ContratoOrto(ID_CONTRATO)
 
 	while ID_CONTRATO: 

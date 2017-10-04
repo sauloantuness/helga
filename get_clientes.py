@@ -1,6 +1,7 @@
 import os
 import pickle
 from meddent.meddent import *
+from meddent.config import *
 from pprint import pprint
 from datetime import datetime
 
@@ -16,7 +17,7 @@ def days_hours_minutes(td):
     return td.days, td.seconds//3600, (td.seconds//60)%60
 
 def get_clientes():
-	ID_CLIENTE = 11862
+	ID_CLIENTE = CONFIG['ID_CLIENTE']
 	c = Cliente(ID_CLIENTE)
 
 	while ID_CLIENTE: 

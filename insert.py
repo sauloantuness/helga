@@ -4,11 +4,12 @@ import pyodbc
 from pprint import pprint
 from datetime import datetime
 from utils import *
+from meddent.config import *
 
 server = '192.168.15.58'
 #server = 'r13.ddns.me'
 port = '49841' 
-database = 'meddent'
+database = CONFIG['DATABASE']
 username = 'sa'
 password = 'r13r13r13'
 
