@@ -7,7 +7,9 @@ class Meddent():
         self.BASE_URL = CONFIG['BASE_URL']
         self.LOGIN_URL = self.BASE_URL + '/admin/index.php'
         self.CLIENTE_URL = self.BASE_URL + '/admin/index.php?class=ClientesList&method=onEdit&key='
+        self.CLIENTE_LIST_URL = self.BASE_URL + '/admin/index.php?class=ClientesList'
         self.TRATAMENTO_URL = self.BASE_URL + '/admin/index.php?class=TratamentosClientesList&method=onView&key='
+        self.TRATAMENTO_LIST_URL = self.BASE_URL + '/admin/index.php?class=TratamentosClientesList'
         self.ORTO_CLIENTE_URL = self.BASE_URL + '/admin/index.php?class=ClientesOrtoList&method=onView&key='
         self.login()
 

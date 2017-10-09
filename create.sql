@@ -1,15 +1,11 @@
-drop database meddent;
-create database meddent;
+drop database meddent_belford_roxo;
+create database meddent_belford_roxo;
+use meddent_belford_roxo;
 
 create table tb_convenio (
 	id_convenio int primary key,
 	ds_convenio varchar(255)
 );
-
--- create table tb_sexo (
--- 	id_sexo int primary key,
--- 	ds_sexo varchar(255)
--- );
 
 create table tb_estado_civil (
 	id_estado_civil varchar(255) primary key,

@@ -342,9 +342,25 @@ def insert_cliente(cliente):
     cursor.commit()
 
 if __name__ == '__main__':
-     # t = load_obj('tratamentos', '17769.pkl')
-     # pprint(t)
-     # exit()
-     for obj in sorted(os.listdir('data/pagamentos/')):
+    # t = load_obj('tratamentos', '17769.pkl')
+    # pprint(t)
+    # exit()
+    for obj in sorted(os.listdir('data/clientes/')):
+        item = load_obj('clientes', obj)
+        command = insert_cliente(item)
+
+    for obj in sorted(os.listdir('data/contratos/')):
+        item = load_obj('contratos', obj)
+        command = insert_contrato(item)
+
+    for obj in sorted(os.listdir('data/mensalidades/')):
+        item = load_obj('mensalidades', obj)
+        command = insert_mensalidade(item)
+
+    for obj in sorted(os.listdir('data/tratamentos/')):
+        item = load_obj('tratamentos', obj)
+        command = insert_tratamento(item)
+
+    for obj in sorted(os.listdir('data/pagamentos/')):
         item = load_obj('pagamentos', obj)
         command = insert_pagamento(item)

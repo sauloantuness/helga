@@ -17,32 +17,32 @@ def days_hours_minutes(td):
     return td.days, td.seconds//3600, (td.seconds//60)%60
 
 def get_clientes():
-	ID_CLIENTE = CONFIG['ID_CLIENTE']
-	c = Cliente(ID_CLIENTE)
+    ID_CLIENTE = CONFIG['ID_CLIENTE']
+    c = Cliente(ID_CLIENTE)
 
-	while ID_CLIENTE: 
-		begin = datetime.now()
+    while ID_CLIENTE:
+        begin = datetime.now()
 
-		c.set_id_cliente(ID_CLIENTE)
-		cliente = c.get_info()
+        c.set_id_cliente(ID_CLIENTE)
+        cliente = c.get_info()
 
-		if cliente:
-			print(cliente['id_cliente'])
-			save_obj(cliente, 'clientes', cliente['id_cliente'])
-		else:
-			print(str(ID_CLIENTE) + ' invalido')
+        if cliente:
+            print(cliente['id_cliente'])
+            save_obj(cliente, 'clientes', cliente['id_cliente'])
+        else:
+            print(str(ID_CLIENTE) + ' invalido')
 
-		ID_CLIENTE -= 1
+        ID_CLIENTE -= 1
 
-		end = datetime.now()
+        end = datetime.now()
 
-		duration = end - begin
+        duration = end - begin
 
-		print('Tempo estimado: %d:%02d' % days_hours_minutes(duration * ID_CLIENTE)[1:])
+        print('Tempo estimado: %d:%02d' % days_hours_minutes(duration * ID_CLIENTE)[1:])
 
 
 if __name__ == '__main__':
-	if not os.path.exists('./data/clientes'):
-	    os.makedirs('./data/clientes')
+    if not os.path.exists('./data/clientes'):
+        os.makedirs('./data/clientes')
 
-	get_clientes()
+    get_clientes()
