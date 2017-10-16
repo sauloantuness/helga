@@ -22,7 +22,7 @@ def downloaded():
     return ids
 
 def get_contratos():
-    dowloaded_ids = dowloaded()
+    dowloaded_ids = downloaded()
 
     sys.setrecursionlimit(100000)
     ID_CONTRATO = CONFIG['ID_CONTRATO']

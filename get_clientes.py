@@ -23,7 +23,7 @@ def downloaded():
 
 
 def get_clientes():
-    dowloaded_ids = dowloaded()
+    dowloaded_ids = downloaded()
 
     ID_CLIENTE = CONFIG['ID_CLIENTE']
     c = Cliente(ID_CLIENTE)
