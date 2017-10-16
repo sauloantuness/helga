@@ -16,11 +16,25 @@ def load_obj(folder, name):
 def days_hours_minutes(td):
     return td.days, td.seconds//3600, (td.seconds//60)%60
 
+def downloaded():
+    files = os.listdir('./data/clientes')
+    ids = [int(f.split('.')[1]) for f in files]
+    return ids
+
+
 def get_clientes():
+    dowloaded_ids = dowloaded()
+
     ID_CLIENTE = CONFIG['ID_CLIENTE']
     c = Cliente(ID_CLIENTE)
 
     while ID_CLIENTE:
+
+        if ID_CLIENTE in dowloaded_ids:
+            print(ID_CLIENTE)
+            ID_CLIENTE -= 1
+            continue
+
         begin = datetime.now()
 
         c.set_id_cliente(ID_CLIENTE)

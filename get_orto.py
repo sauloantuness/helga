@@ -16,45 +16,57 @@ def load_obj(folder, name):
 def days_hours_minutes(td):
     return td.days, td.seconds//3600, (td.seconds//60)%60
 
+def downloaded():
+    files = os.listdir('./data/contratos')
+    ids = [int(f.split('.')[1]) for f in files]
+    return ids
+
 def get_contratos():
-	sys.setrecursionlimit(100000)
-	ID_CONTRATO = CONFIG['ID_CONTRATO']
-	c = ContratoOrto(ID_CONTRATO)
+    dowloaded_ids = dowloaded()
 
-	while ID_CONTRATO: 
-		begin = datetime.now()
+    sys.setrecursionlimit(100000)
+    ID_CONTRATO = CONFIG['ID_CONTRATO']
+    c = ContratoOrto(ID_CONTRATO)
 
-		c.set_id_contrato(ID_CONTRATO)
-		contrato = c.get_info()
+    while ID_CONTRATO: 
+        if ID_CONTRATO in dowloaded_ids:
+            print(ID_CONTRATO)
+            ID_CONTRATO -= 1
+            continue
 
-		if contrato:
-			print(contrato['id_contrato'] + ' contrato')
-			save_obj(contrato, 'contratos', contrato['id_contrato'])
+        begin = datetime.now()
 
-			for mensalidade in c.get_mensalidades():
-				print('\t' + mensalidade['id_mensalidade'] + ' mensalidade')
-				save_obj(mensalidade, 'mensalidades', mensalidade['id_mensalidade'])
+        c.set_id_contrato(ID_CONTRATO)
+        contrato = c.get_info()
 
-		else:
-			print(str(ID_CONTRATO) + ' invalido')
+        if contrato:
+            print(contrato['id_contrato'] + ' contrato')
+            save_obj(contrato, 'contratos', contrato['id_contrato'])
 
-		ID_CONTRATO -= 1
+            for mensalidade in c.get_mensalidades():
+                print('\t' + mensalidade['id_mensalidade'] + ' mensalidade')
+                save_obj(mensalidade, 'mensalidades', mensalidade['id_mensalidade'])
 
-		end = datetime.now()
+        else:
+            print(str(ID_CONTRATO) + ' invalido')
 
-		duration = end - begin
+        ID_CONTRATO -= 1
 
-		print('Tempo estimado: %d:%02d' % days_hours_minutes(duration * ID_CONTRATO)[1:])
+        end = datetime.now()
+
+        duration = end - begin
+
+        print('Tempo estimado: %d:%02d' % days_hours_minutes(duration * ID_CONTRATO)[1:])
 
 
 if __name__ == '__main__':
-	if not os.path.exists('./data/clientes'):
-	    os.makedirs('./data/clientes')
+    if not os.path.exists('./data/clientes'):
+        os.makedirs('./data/clientes')
 
-	if not os.path.exists('./data/contratos'):
-	    os.makedirs('./data/contratos')
+    if not os.path.exists('./data/contratos'):
+        os.makedirs('./data/contratos')
 
-	if not os.path.exists('./data/mensalidades'):
-	    os.makedirs('./data/mensalidades')
+    if not os.path.exists('./data/mensalidades'):
+        os.makedirs('./data/mensalidades')
 
-	get_contratos()
+    get_contratos()
