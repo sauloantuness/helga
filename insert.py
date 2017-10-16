@@ -364,32 +364,37 @@ if __name__ == '__main__':
         if not has_inserted(obj, attrs):
             item = load_obj('clientes', obj)
             command = insert_cliente(item)
-        print(obj, 'inserted')
+        else:
+            print(obj, 'inserted')
 
     attrs = get_attrs('id_contrato', 'tb_contrato')
     for obj in sorted(os.listdir('data/contratos/')):
         if not has_inserted(obj, attrs):
             item = load_obj('contratos', obj)
             command = insert_contrato(item)
-        print(obj, 'inserted')
+        else:
+            print(obj, 'inserted')
 
     attrs = get_attrs('id_mensalidade', 'tb_mensalidade')
     for obj in sorted(os.listdir('data/mensalidades/')):
         if not has_inserted(obj, attrs):
             item = load_obj('mensalidades', obj)
             command = insert_mensalidade(item)
-        print(obj, 'inserted')
+        else:
+            print(obj, 'inserted')
 
     attrs = get_attrs('id_tratamento', 'tb_tratamento')
     for obj in sorted(os.listdir('data/tratamentos/')):
         if not has_inserted(obj, attrs):
             item = load_obj('tratamentos', obj)
             command = insert_tratamento(item)
-        print(obj, 'inserted')
+        else:
+            print(obj, 'inserted')
 
     attrs = get_attrs('id_pagamento', 'tb_pagamento')
     for obj in sorted(os.listdir('data/pagamentos/')):
         if not has_inserted(obj, attrs):
             item = load_obj('pagamentos', obj)
             command = insert_pagamento(item)
-        print(obj, 'inserted')
+        else:
+            print(obj, 'inserted')
