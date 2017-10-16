@@ -18,7 +18,7 @@ def days_hours_minutes(td):
 
 def downloaded():
     files = os.listdir('./data/clientes')
-    ids = [int(f.split('.')[1]) for f in files]
+    ids = [int(f.split('.')[0]) for f in files]
     return ids
 
 def get_contratos():
