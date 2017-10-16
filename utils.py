@@ -68,7 +68,7 @@ def clean_dentista(dentista):
         'Dr. A Aparelho Extra Orto': 21,
         'Dr. A Fernando Implante': 29,
         'Dr. A Fernando Polinati': 5,
-        'Dr. A Frederico': 6,
+        'Dr. A Frederico': 29,
         'Dr. A Glauco Gomes Vilar': 1,
         'Dr. A Pasta De Orto Paula': 19,
         'Dr. A Pasta Orto Rx': 8,
