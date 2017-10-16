@@ -5,7 +5,7 @@ import pyodbc
 
 
 server = '192.168.15.58'
-server = 'r13.ddns.me'
+#server = 'r13.ddns.me'
 port = '49841' 
 database = CONFIG['DATABASE']
 username = 'sa'
