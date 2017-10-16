@@ -341,26 +341,55 @@ def insert_cliente(cliente):
 
     cursor.commit()
 
+def get_attrs(attr, table):
+    sql = 'select {} from {}'.format(attr, table)
+    attrs = cursor.execute(sql).fetchall()
+    attrs = [attr[0] for attr in attrs]
+
+    return attrs
+
+def has_inserted(obj, attrs):
+    obj = obj.split('.')[0]
+
+    return int(obj) in attrs
+
+
 if __name__ == '__main__':
     # t = load_obj('tratamentos', '17769.pkl')
     # pprint(t)
     # exit()
+
+    attrs = get_attrs('id_cliente', 'tb_cliente')
     for obj in sorted(os.listdir('data/clientes/')):
-        item = load_obj('clientes', obj)
-        command = insert_cliente(item)
+        if not has_inserted(obj, attrs):
+            item = load_obj('clientes', obj)
+            command = insert_cliente(item)
+        print(obj, 'inserted')
 
+    attrs = get_attrs('id_contrato', 'tb_contrato')
     for obj in sorted(os.listdir('data/contratos/')):
-        item = load_obj('contratos', obj)
-        command = insert_contrato(item)
+        if not has_inserted(obj, attrs):
+            item = load_obj('contratos', obj)
+            command = insert_contrato(item)
+        print(obj, 'inserted')
 
+    attrs = get_attrs('id_mensalidade', 'tb_mensalidade')
     for obj in sorted(os.listdir('data/mensalidades/')):
-        item = load_obj('mensalidades', obj)
-        command = insert_mensalidade(item)
+        if not has_inserted(obj, attrs):
+            item = load_obj('mensalidades', obj)
+            command = insert_mensalidade(item)
+        print(obj, 'inserted')
 
+    attrs = get_attrs('id_tratamento', 'tb_tratamento')
     for obj in sorted(os.listdir('data/tratamentos/')):
-        item = load_obj('tratamentos', obj)
-        command = insert_tratamento(item)
+        if not has_inserted(obj, attrs):
+            item = load_obj('tratamentos', obj)
+            command = insert_tratamento(item)
+        print(obj, 'inserted')
 
+    attrs = get_attrs('id_pagamento', 'tb_pagamento')
     for obj in sorted(os.listdir('data/pagamentos/')):
-        item = load_obj('pagamentos', obj)
-        command = insert_pagamento(item)
+        if not has_inserted(obj, attrs):
+            item = load_obj('pagamentos', obj)
+            command = insert_pagamento(item)
+        print(obj, 'inserted')
