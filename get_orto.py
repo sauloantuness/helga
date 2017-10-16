@@ -17,7 +17,7 @@ def days_hours_minutes(td):
     return td.days, td.seconds//3600, (td.seconds//60)%60
 
 def get_contratos():
-	sys.setrecursionlimit(10000)
+	sys.setrecursionlimit(100000)
 	ID_CONTRATO = CONFIG['ID_CONTRATO']
 	c = ContratoOrto(ID_CONTRATO)
 
