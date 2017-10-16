@@ -113,7 +113,7 @@ def clean_dentista(dentista):
         'Dra. Wanderleya Becker M.f.manso': 38,
         'Pasta De Orto Dra.valeska': 17,
         'Dra. Patricia Cardoso': 100,
-        'Dra. A Lorraine Fernandes Tinoco', 101,
+        'Dra. A Lorraine Fernandes Tinoco': 101,
     }
 
     return dentistas.get(dentista, None)
