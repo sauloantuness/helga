@@ -123,6 +123,7 @@ create table tb_pagamento (
 
 create table tb_contrato (
 	id_contrato int primary key,
+	codigo int,
 	valor decimal,
 	tempo varchar(255),
 	multa varchar(255),
